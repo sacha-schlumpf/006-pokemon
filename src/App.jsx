@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Card from "./Card";
 
 const pokemons = [
   { id: 1, name: "Bulbasaur", type: "Grass", hp: 45, attack: 49 },
@@ -26,13 +27,25 @@ const pokemons = [
 // Sprite image URL pattern:
 // `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
 
-import Card from "./Card";
-
 const App = () => {
   return (
-    <div style={{ display: "flex", gap: 24 }}>
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(5, 1fr)", // 4 equal-width columns
+        gap: 20, // Spacing between cards
+        padding: 120, // Optional: padding around the grid
+      }}
+    >
       {pokemons.map((pokemon, i) => (
-        <Card key={i} name={pokemon.name} hp={pokemon.hp} />
+        <Card
+          key={i}
+          id={pokemon.id}
+          name={pokemon.name}
+          type={pokemon.type}
+          hp={pokemon.hp}
+          attack={pokemon.attack}
+        />
       ))}
     </div>
   );
