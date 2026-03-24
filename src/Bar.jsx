@@ -5,8 +5,8 @@ const Bar = ({ width, height, value, color }) => {
         style={{
           position: "absolute",
           width: `${width}%`,
-          height: height,
-          backgroundColor: "lightgray",
+          height: `${height}px`,
+          backgroundColor: "rgba(99, 99, 99, 0.2)",
           borderRadius: 4,
           zIndex: 1,
         }}
@@ -14,11 +14,13 @@ const Bar = ({ width, height, value, color }) => {
       <div
         style={{
           position: "absolute",
-          width: `${(value * width) / 160}%`,
-          height: height,
+          width: `${(value * width) / 160 - 10}%`,
+          height: `${height / 2}px`,
           backgroundColor: color,
           borderRadius: 4,
           zIndex: 2,
+          top: `${height / 4}px`,
+          left: `${height / 4}px`,
         }}
       />
     </div>
