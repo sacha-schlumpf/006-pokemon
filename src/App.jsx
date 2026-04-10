@@ -24,29 +24,90 @@ const pokemons = [
   { id: 148, name: "Dragonair", type: "Dragon", hp: 61, attack: 84 },
 ];
 
-// Sprite image URL pattern:
-// `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
+const types = [
+  "All",
+  "Grass",
+  "Fire",
+  "Water",
+  "Electric",
+  "Psychic",
+  "Normal",
+  "Ghost",
+  "Dragon",
+  "Fighting",
+  "Rock",
+];
+
+const typeColors = {
+  All: "#000000",
+  Fire: "#FF6B6B",
+  Water: "#6B8EFF",
+  Grass: "#7ED321",
+  Electric: "#F8D030",
+  Psychic: "#8b3d94",
+  Normal: "#A33EA1",
+  Ghost: "#d9d9d9",
+  Dragon: "#95a33e",
+  Fighting: "#b7723d",
+  Rock: "#888888",
+};
 
 const App = () => {
+  const [selectedType, setSelectedType] = useState("All");
+
+  const filteredPokemons =
+    selectedType === "All"
+      ? pokemons
+      : pokemons.filter((pokemon) => pokemon.type === selectedType);
   return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(5, 1fr)", // 4 equal-width columns
-        gap: 20, // Spacing between cards
-        padding: 120, // Optional: padding around the grid
-      }}
-    >
-      {pokemons.map((pokemon, i) => (
-        <Card
-          key={i}
-          id={pokemon.id}
-          name={pokemon.name}
-          type={pokemon.type}
-          hp={pokemon.hp}
-          attack={pokemon.attack}
-        />
-      ))}
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <div style={{ width: "70%", maxWidth: 1000 }}>
+        <div className="title">Pokémon</div>
+        <div
+          style={{
+            display: "flex",
+            gap: 10,
+            marginBottom: 20,
+            flexWrap: "wrap",
+            justifyContent: "flex-start",
+            margin: 0,
+          }}
+        >
+          {types.map((type) => (
+            <button
+              className="selection"
+              key={type}
+              onClick={() => setSelectedType(type)}
+              style={{
+                background:
+                  selectedType === type ? typeColors[type] : "#f2f1ea",
+                color: selectedType === type ? "white" : "black",
+              }}
+            >
+              {type}
+            </button>
+          ))}
+        </div>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(4, 1fr)",
+            gap: 20,
+            paddingTop: 20,
+          }}
+        >
+          {filteredPokemons.map((pokemon) => (
+            <Card
+              key={pokemon.id}
+              id={pokemon.id}
+              name={pokemon.name}
+              type={pokemon.type}
+              hp={pokemon.hp}
+              attack={pokemon.attack}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

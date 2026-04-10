@@ -2,6 +2,22 @@ body {
   font-family: "Neco", sans-serif;
 }
 
+.title {
+  font-weight: 900;
+  font-size: 48pt;
+  text-align: center;
+  padding: 24px;
+}
+.selection {
+  font-family: "Neco", sans-serif;
+  font-size: 12pt;
+  font-weight: 500;
+  padding: 2px 8px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
 .bar-title {
   font-weight: 600;
   margin: 0;
